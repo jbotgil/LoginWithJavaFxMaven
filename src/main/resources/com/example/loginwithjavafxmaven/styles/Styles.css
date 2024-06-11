@@ -1,0 +1,41 @@
+.loginBackGround {
+
+    -fx-padding: 50px;
+
+    -fx-background-color: grey;
+    -fx-background-image: url('../imagenes/LoginBackGround.png');
+
+    -fx-background-size: cover;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
+}
+
+.loginBox {
+    -fx-background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco translúcido */
+    -fx-padding: 20px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 0); /* Sombra suave */
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.text-field, .password-field {
+    -fx-pref-width: 200px;
+}
+
+.button {
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-background-color: linear-gradient(to bottom, #4CAF50, #45a049);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 4,0,0,1 );
+    -fx-padding: 8px 20px;
+}
+
+.registerText{
+    -fx-font-weight: bold;
+}
