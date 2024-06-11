@@ -2,6 +2,7 @@ module com.example.loginwithjavafxmaven {
 
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.naming;
 
 
     opens com.example.loginwithjavafxmaven to javafx.fxml;
