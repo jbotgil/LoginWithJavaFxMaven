@@ -18,7 +18,7 @@ public class Main extends Application {
 
         stage.setTitle("Login");
 
-        Image image = new Image(getClass().getResourceAsStream("/com/example/loginwithjavafxmaven/icons/appIcon.png")); //guardamos la imagen
+        Image image = new Image(getClass().getResourceAsStream("/icons/appIcon.png")); //guardamos la imagen
 
         stage.getIcons().add(image);
 
