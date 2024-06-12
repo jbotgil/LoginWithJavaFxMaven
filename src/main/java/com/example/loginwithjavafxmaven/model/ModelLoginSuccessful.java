@@ -7,7 +7,7 @@ public class ModelLoginSuccessful {
     ReporitoryLoginSuccessful reporitoryLoginSuccessful = new ReporitoryLoginSuccessful();
 
     public void menuLoginSuccessful(ActionEvent actionEvent){
-        reporitoryLoginSuccessful.menuLogin(actionEvent);
+        reporitoryLoginSuccessful.menuLoginSuccess(actionEvent);
     }
 
 }
