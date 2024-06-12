@@ -37,4 +37,27 @@ public class ReporitoryLoginSuccessful {
         }
     }
 
+    /*@javafx.fxml.FXML
+    public void menuCrearCuenta(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("RegisterView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Hyperlink) actionEvent.getSource()).getScene().getWindow();
+
+            stage.setMinWidth(310);
+            stage.setMinHeight(355);
+
+            //Aplicamos la misma resolucion del login para que en el momento de cambiar de pestaña se vea más fluido
+            stage.setWidth(getGuardarAncho());
+            stage.setHeight(getGuardarAltura());
+
+            stage.setTitle("Register");
+
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }*/
+
 }

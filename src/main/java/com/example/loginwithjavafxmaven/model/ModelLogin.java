@@ -17,5 +17,8 @@ public class ModelLogin {
         return mailValidator.validarMail(correo);
     }
 
+    public boolean iniciarSesion(String mail, String passwd){
+        return repositoryLogin.iniciarSesion(mail,passwd);
+    }
 
 }

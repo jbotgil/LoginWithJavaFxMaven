@@ -28,5 +28,9 @@ public class LoginController {
         return modelLogin.validarMail(correo);
     }
 
+    public boolean iniciarSesion(String mail, String passwd){
+        return modelLogin.iniciarSesion(mail,passwd);
+    }
+
 
 }

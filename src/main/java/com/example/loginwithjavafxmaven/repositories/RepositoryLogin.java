@@ -41,11 +41,17 @@ public class RepositoryLogin {
     }
 
 
-    public void iniciarSesion(String email, String passwd){
+    public boolean iniciarSesion(String email, String passwd){
         List<Usuario> usuarios = repositoryUsuarios.getUsuarios(); //Usuarios de la base de datos
 
         //Primero comprobamos si existe el correo electronico dentro de la base de datos
-
+        Usuario usu = repositoryUsuarios.buscarUsuario(usuarios,email);
+        if ((email.equals(usu.getEmail()))&& passwd.equals(usu.getPasswd())){
+            System.out.println("Inicio de sesion correcto");
+            return true;
+        } else {
+            System.out.println("Inicio de sesion incorrecto.");
+            return false;
+        }
     }
-
 }

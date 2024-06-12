@@ -10,5 +10,4 @@ public class LoginSuccessfulController {
         modelLoginSuccessful.menuLoginSuccessful(actionEvent);
     }
 
-
 }

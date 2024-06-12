@@ -1,8 +1,10 @@
 package com.example.loginwithjavafxmaven.view;
 
 import com.example.loginwithjavafxmaven.controller.LoginController;
+import com.example.loginwithjavafxmaven.controller.LoginSuccessfulController;
 import com.example.loginwithjavafxmaven.controller.RegisterController;
 import com.example.loginwithjavafxmaven.model.ModelRegister;
+import com.example.loginwithjavafxmaven.repositories.RepositoryLogin;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
@@ -18,6 +20,9 @@ public class LoginView {
 
     RegisterController registerController = new RegisterController();
     LoginController loginController = new LoginController();
+
+    LoginSuccessfulController loginSuccessfulController = new LoginSuccessfulController();
+
 
     private double guardarAltura;
     private double guardarAncho;
@@ -35,6 +40,11 @@ public class LoginView {
         String mail = mailField.getText();
         String password = passwordField.getText();
 
+        boolean sesion = loginController.iniciarSesion(mail,password); //Lanzamos el inicio de sesion
+
+        if (sesion){
+            loginSuccessfulController.menuLoginSuccessful(actionEvent);
+        }
     }
 
     @javafx.fxml.FXML
