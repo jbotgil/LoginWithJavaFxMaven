@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 
@@ -46,6 +47,13 @@ public class RepositoryLogin {
 
         //Primero comprobamos si existe el correo electronico dentro de la base de datos
         Usuario usu = repositoryUsuarios.buscarUsuario(usuarios,email);
+        if (usu == null){ //Controlamos la excepcion, ya que a la hora de iniciar sesion si introducimos un usuario invalido el usuario sera null
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error de inicio de sesion");
+            alert.showAndWait();
+        }
+
         if ((email.equals(usu.getEmail()))&& passwd.equals(usu.getPasswd())){
             System.out.println("Inicio de sesion correcto");
             return true;
