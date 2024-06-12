@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
     @Override
@@ -16,11 +17,16 @@ public class Main extends Application {
 
         Scene scene = new Scene(fxmlLoader.load(), 500, 400);
 
+        //Titulo de la app
         stage.setTitle("Login");
 
-        Image image = new Image(getClass().getResourceAsStream("/icons/appIcon.png")); //guardamos la imagen
+        //Resolucion minima
+        stage.setMinWidth(310);
+        stage.setMinHeight(355);
 
-        stage.getIcons().add(image);
+        //Icono de la app
+        Image iconImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/appIcon.png")));
+        stage.getIcons().add(iconImage);
 
         stage.setScene(scene);
         stage.show();

@@ -1,4 +1,4 @@
-package com.example.loginwithjavafxmaven.controller;
+package com.example.loginwithjavafxmaven.repositories;
 
 import javafx.scene.control.Alert;
 
@@ -14,7 +14,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class MailValidatorController {
+public class RepositoryMailValidator {
 
     private static int hear( BufferedReader in ) throws IOException {
         String line = null;
@@ -151,9 +151,9 @@ public class MailValidatorController {
 
 
     public boolean validarMail(String correo){
-        if (MailValidatorController.isAddressValid(correo)) {
+        if (RepositoryMailValidator.isAddressValid(correo)) {
             //Correo electrónico válido
-Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Correo válido");
             alert.setHeaderText(null);
             alert.setContentText("El correo electrónico es válido.");

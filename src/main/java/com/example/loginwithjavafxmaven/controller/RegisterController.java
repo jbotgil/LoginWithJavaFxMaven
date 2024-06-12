@@ -1,20 +1,12 @@
 package com.example.loginwithjavafxmaven.controller;
 
-import com.example.loginwithjavafxmaven.Main;
-import com.example.loginwithjavafxmaven.controller.LoginController;
-import com.example.loginwithjavafxmaven.controller.MailValidatorController;
-import com.example.loginwithjavafxmaven.controller.NameCheckerController;
+import com.example.loginwithjavafxmaven.model.ModelRegister;
+import com.example.loginwithjavafxmaven.repositories.RepositoryMailValidator;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class RegisterController {
 
@@ -34,9 +26,11 @@ public class RegisterController {
     //variable para controlar si el nombre es valido
     private static boolean nombreValido = false;
 
+    ModelRegister modelRegister = new ModelRegister();
+
     @javafx.fxml.FXML
     public void handleRegisterButtonAction(ActionEvent actionEvent) {
-        MailValidatorController mailValidatorController = new MailValidatorController();
+        RepositoryMailValidator repositoryMailValidator = new RepositoryMailValidator();
         NameCheckerController nameCheckerController = new NameCheckerController();
         try {
 
@@ -61,7 +55,7 @@ public class RegisterController {
              *
              * Lo metemos dentro de una variable para que después sea mas facil validar*/
 
-            correoExiste = mailValidatorController.validarMail(mailField.getText());
+            correoExiste = repositoryMailValidator.validarMail(mailField.getText());
 
             //todo:Validamos si el mail existe en nuestra base de datos
 
@@ -78,27 +72,8 @@ public class RegisterController {
         }
     }
 
-    @javafx.fxml.FXML
-    public void menuIniciarSesion(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
-
-            Parent root = loader.load();
-
-            //creamos un objeto loader y cogemos sus controlles
-            LoginController loginController = loader.getController();
-
-            Stage stage = (Stage) ((Hyperlink) actionEvent.getSource()).getScene().getWindow();
-
-            //Le asignamos la altura y el ancho a la escena
-            stage.setWidth(loginController.getGuardarAltura());
-            stage.setHeight(loginController.getGuardarAncho());
-
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    public void menuCrearCuenta(ActionEvent actionEvent) {
+        modelRegister.menuCrearCuenta(actionEvent);
     }
 
 }

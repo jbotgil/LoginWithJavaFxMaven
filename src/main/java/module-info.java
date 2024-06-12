@@ -10,7 +10,10 @@ module com.example.loginwithjavafxmaven {
 
     exports com.example.loginwithjavafxmaven;
     exports com.example.loginwithjavafxmaven.controller;
+    exports com.example.loginwithjavafxmaven.view;
 
-    opens com.example.loginwithjavafxmaven.controller to javafx.fxml;
+    opens com.example.loginwithjavafxmaven.view to javafx.fxml;
+    exports com.example.loginwithjavafxmaven.repositories;
+
 
 }
