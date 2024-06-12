@@ -30,6 +30,8 @@ public class RepositoryUsuarioDB {
 
     //Pruebas
     private List<Usuario> listarUsuarios(){
+
+
         String checkSQL = "SELECT * FROM Usuarios"; //Consulta a la base de datos
 
         List<Usuario> usuarios = new LinkedList<>(); //Coleccion en la que añadiremos todos los usuarios para poder listarlos
