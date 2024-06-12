@@ -11,6 +11,7 @@ module com.example.loginwithjavafxmaven {
     exports com.example.loginwithjavafxmaven;
     exports com.example.loginwithjavafxmaven.controller;
     exports com.example.loginwithjavafxmaven.view;
+    exports com.example.loginwithjavafxmaven.dao;
 
     opens com.example.loginwithjavafxmaven.view to javafx.fxml;
     exports com.example.loginwithjavafxmaven.repositories;

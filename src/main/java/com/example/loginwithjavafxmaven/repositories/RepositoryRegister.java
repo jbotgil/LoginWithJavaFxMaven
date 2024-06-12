@@ -34,7 +34,7 @@ public class RepositoryRegister {
     }
 
 
-    @FXML
+    @javafx.fxml.FXML
     public void menuCrearCuenta(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("RegisterView.fxml"));
@@ -47,6 +47,8 @@ public class RepositoryRegister {
             //Aplicamos la misma resolucion del login para que en el momento de cambiar de pestaña se vea más fluido
             stage.setWidth(getGuardarAncho());
             stage.setHeight(getGuardarAltura());
+
+            stage.setTitle("Register");
 
             stage.setScene(new Scene(root));
             stage.show();

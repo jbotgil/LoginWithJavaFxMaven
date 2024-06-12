@@ -35,14 +35,6 @@ public class LoginView {
         String mail = mailField.getText();
         String password = passwordField.getText();
 
-        loginController.validarMail(mail);
-
-
-        //todo: pensar que tipo de comunicacion de base de datos quiero para este programa (local/nube)
-
-        //todo: conectarme a la base de datos a trabes de la carpeta model
-
-        //todo: instanciar una conexión a la base de datos para poder hacer la validacion de del correo + contraseña
     }
 
     @javafx.fxml.FXML

@@ -1,6 +1,7 @@
 package com.example.loginwithjavafxmaven.repositories;
 
 import com.example.loginwithjavafxmaven.Main;
+import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.view.LoginView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +11,11 @@ import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RepositoryLogin {
+
+    RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
 
     @javafx.fxml.FXML
     public void menuIniciarSesion(ActionEvent actionEvent) {
@@ -27,6 +31,8 @@ public class RepositoryLogin {
             stage.setWidth(loginView.getGuardarAltura());
             stage.setHeight(loginView.getGuardarAncho());
 
+            stage.setTitle("Login");
+
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -35,5 +41,12 @@ public class RepositoryLogin {
     }
 
 
+    public void iniciarSesion(String email, String passwd){
+        List<Usuario> usuarios = repositoryUsuarios.getUsuarios(); //Usuarios de la base de datos
+
+        //Primero comprobamos si existe el correo electronico dentro de la base de datos
+
+
+    }
 
 }

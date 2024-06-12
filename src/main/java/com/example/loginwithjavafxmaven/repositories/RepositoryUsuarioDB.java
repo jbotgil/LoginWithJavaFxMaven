@@ -4,6 +4,7 @@ import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,8 +22,14 @@ public class RepositoryUsuarioDB {
         return instance;
     }
 
+    private List<Usuario> usuarios = listarUsuarios();
+
+    public List<Usuario> getUsuarios() { //Usuarios del sistema
+        return usuarios;
+    }
+
     //Pruebas
-    public List<Usuario> listarUsuarios(){
+    private List<Usuario> listarUsuarios(){
         String checkSQL = "SELECT * FROM Usuarios"; //Consulta a la base de datos
 
         List<Usuario> usuarios = new LinkedList<>(); //Coleccion en la que añadiremos todos los usuarios para poder listarlos
@@ -47,6 +54,4 @@ public class RepositoryUsuarioDB {
         }
         return usuarios;
     }
-
-
 }
