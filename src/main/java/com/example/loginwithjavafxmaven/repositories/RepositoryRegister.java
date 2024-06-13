@@ -22,6 +22,9 @@ import java.sql.SQLException;
 public class RepositoryRegister {
     SQLiteConnector connector;
     AlertasView alertasView = new AlertasView();
+    RepositoryMailValidator repositoryMailValidator = new RepositoryMailValidator();
+    NameCheckerController nameCheckerController = new NameCheckerController();
+    RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
 
     //Controlar si el correo existe
     private static boolean correoExiste = false;
@@ -72,10 +75,6 @@ public class RepositoryRegister {
         this.guardarAncho = guardarAncho;
     }
 
-    RepositoryMailValidator repositoryMailValidator = new RepositoryMailValidator();
-    NameCheckerController nameCheckerController = new NameCheckerController();
-    RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
-
 
     @javafx.fxml.FXML
     public void menuCrearCuenta(ActionEvent actionEvent) {
@@ -107,13 +106,21 @@ public class RepositoryRegister {
         try (Connection conn = connector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+
             // Validar nombre (no altero tu lógica de validación aquí)
             if (!nameCheckerController.validarNombre(nombreCompleto)) {
                 alertasView.mostrarAlerta("Error", "Nombre inválido.", Alert.AlertType.ERROR);
                 return;
             }
 
-            // Validar correo existente
+            // Validar correo valido
+            if (!repositoryMailValidator.validarMail(email)){
+                //Si el mail no existe
+                alertasView.mostrarAlerta("Error","Correo inválido", Alert.AlertType.ERROR);
+                return;
+            }
+
+            // Validar correo existente dentro de la base de datos
             if (repositoryUsuarios.buscarUsuario(email) != null) {
                 alertasView.mostrarAlerta("Error", "Correo electrónico existente.", Alert.AlertType.ERROR);
                 return;
