@@ -96,7 +96,7 @@ public class RepositoryRegister {
         }
     }
 
-    public void registrarse(String email, String passwd, String passwdVerificar, String nombreCompleto) {
+    public void registrarse(ActionEvent actionEvent,String email, String passwd, String passwdVerificar, String nombreCompleto) {
 
         String sql = "INSERT INTO Usuarios(nombreCompleto,email,passwd) VALUES(?,?,?)";
 

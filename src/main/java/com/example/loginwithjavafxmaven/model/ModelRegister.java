@@ -13,7 +13,7 @@ public class ModelRegister {
     }
 
     public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto){
-        repositoryRegister.registrarse(email,passwd,passwdVerificar,nombreCompleto);
+        repositoryRegister.registrarse(actionEvent,email,passwd,passwdVerificar,nombreCompleto);
     }
 
 }
