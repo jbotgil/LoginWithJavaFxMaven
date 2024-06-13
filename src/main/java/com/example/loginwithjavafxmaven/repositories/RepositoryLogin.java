@@ -45,10 +45,9 @@ public class RepositoryLogin {
 
 
     public boolean iniciarSesion(String email, String passwd){
-        List<Usuario> usuarios = repositoryUsuarios.getUsuarios(); //Usuarios de la base de datos
 
         //Primero comprobamos si existe el correo electronico dentro de la base de datos
-        Usuario usu = usuarioController.buscarUsuario(usuarios,email);
+        Usuario usu = usuarioController.buscarUsuario(email);
         if (usu == null){ //Controlamos la excepcion, ya que a la hora de iniciar sesion si introducimos un usuario invalido el usuario sera null
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

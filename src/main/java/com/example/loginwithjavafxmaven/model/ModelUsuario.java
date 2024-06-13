@@ -9,8 +9,8 @@ public class ModelUsuario {
 
     RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
 
-    public Usuario buscarUsuario(List<Usuario> usuarios, String mail) {
-        return repositoryUsuarios.buscarUsuario(usuarios, mail);
+    public Usuario buscarUsuario(String mail) {
+        return repositoryUsuarios.buscarUsuario(mail);
     }
 
 }

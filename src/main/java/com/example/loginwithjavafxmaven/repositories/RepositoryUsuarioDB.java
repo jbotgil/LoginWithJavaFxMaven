@@ -57,6 +57,12 @@ public class RepositoryUsuarioDB {
         return usuarios;
     }
 
+    public void verificarCorreo(String mail){
+        List<Usuario> usus = getUsuarios();
+
+
+    }
+
 
 
 }
