@@ -2,6 +2,7 @@ package com.example.loginwithjavafxmaven.repositories;
 
 import com.example.loginwithjavafxmaven.Main;
 import com.example.loginwithjavafxmaven.controller.NameCheckerController;
+import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +14,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RepositoryRegister {
+    private SQLiteConnector connector = SQLiteConnector.getInstance();
 
-    //variable para controlar si el correo existe
+    //Controlar si el correo existe
     private static boolean correoExiste = false;
-    //variable para controlar si el nombre es valido
+    //Controla si el correo existe en nustra base de datos
+    private static boolean correoValido = false;
+    //Controla si el nombre es valido
     private static boolean nombreValido = false;
     private double guardarAltura;
     private double guardarAncho;
@@ -29,6 +34,14 @@ public class RepositoryRegister {
 
     public static boolean isNombreValido() {
         return nombreValido;
+    }
+
+    public static boolean isCorreoValido() {
+        return correoValido;
+    }
+
+    public static void setCorreoValido(boolean correoValido) {
+        RepositoryRegister.correoValido = correoValido;
     }
 
     public static void setCorreoExiste(boolean correoExiste) {
@@ -57,6 +70,7 @@ public class RepositoryRegister {
 
     RepositoryMailValidator repositoryMailValidator = new RepositoryMailValidator();
     NameCheckerController nameCheckerController = new NameCheckerController();
+    RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
 
 
     @javafx.fxml.FXML
@@ -82,37 +96,57 @@ public class RepositoryRegister {
         }
     }
 
-    public void registrarse(String email, String passwd, String passwdVerificar, String nombreCompleto){
-        try {
-            /**
-             * Validamos el nombre
-             *
-             * Nombres valido: 1 o 2 nombres y 1 o 2 apellidos
-             *
-             * En caso de ser verdadero, no saltará ninguna alerta y el metodo devolverá true,
-             * en caso contrario, devolverá false y lanzará una alerta
-             *
-             * Lo metemos dentro de una variable para que después sea mas facil validar*/
-            setNombreValido(nameCheckerController.validarNombre(nombreCompleto));
+    public void registrarse(String email, String passwd, String passwdVerificar, String nombreCompleto) {
 
-            //Validamos que el email existe y lo introducimos dentro de la variable correoExiste
-            setCorreoExiste(repositoryMailValidator.validarMail(email));
+        String sql = "INSERT INTO Usuarios(nombreCompleto,email,passwd) VALUES(?,?,?)";
 
-            //todo:Validamos si el mail existe en nuestra base de datos
+        try (var conn = connector.getConnection();
+             var pstmt = conn.prepareStatement(sql)) {
 
+            // Validar nombre (no altero tu lógica de validación aquí)
+            if (!nameCheckerController.validarNombre(nombreCompleto)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Nombre invalido.");
+                alert.showAndWait();
+                return;
+            }
 
-            //todo:Enviamos un mail de confirmación (si es posible, ya que en un entorno local no sé si esto se podría hacer)
+            // Validar correo existente
+            if (repositoryUsuarios.buscarUsuario(email) != null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Correo electronico existente.");
+                alert.showAndWait();
+                return;
+            }
 
+            // Insertar usuario si todo está validado
+            pstmt.setString(1, nombreCompleto);
+            pstmt.setString(2, email);
+            pstmt.setString(3, passwd);
 
-        } catch (Exception e) {
-            // Error al validar el correo electrónico
+            pstmt.executeQuery();
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Usuario registrado correctamente!");
+                alert.showAndWait();
+            }
+
+        } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Ha ocurrido un error al validar el correo electrónico.");
+            alert.setContentText("Error al registrar usuario: " + e.getMessage());
             alert.showAndWait();
+            e.printStackTrace();
         }
     }
-
 
 }

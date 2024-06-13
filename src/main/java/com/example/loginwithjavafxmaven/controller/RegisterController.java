@@ -22,12 +22,10 @@ public class RegisterController {
     private TextField nombreField;
 
 
-
     ModelRegister modelRegister = new ModelRegister();
 
-    @javafx.fxml.FXML
-    public void handleRegisterButtonAction(ActionEvent actionEvent) {
-
+    public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto){
+        modelRegister.registrarse(actionEvent,email,passwd,passwdVerificar,nombreCompleto);
     }
 
     public void menuCrearCuenta(ActionEvent actionEvent) {

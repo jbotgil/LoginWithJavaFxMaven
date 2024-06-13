@@ -50,4 +50,9 @@ public class RepositoryUsuarios {
                 .findFirst()
                 .orElse(null);
     }
+
+    public static void main(String[] args) {
+        RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
+        System.out.println(repositoryUsuarios.getUsuarios().size()+1);
+    }
 }
