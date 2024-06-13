@@ -28,7 +28,7 @@ public class RepositoryUsuarioDB {
         return usuarios;
     }
 
-    //Pruebas
+    // Devuelve los usuarios de nuestra base de datos a traves de una consulta sql
     private List<Usuario> listarUsuarios(){
 
 
@@ -56,4 +56,7 @@ public class RepositoryUsuarioDB {
         }
         return usuarios;
     }
+
+
+
 }

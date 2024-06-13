@@ -1,6 +1,7 @@
 package com.example.loginwithjavafxmaven.repositories;
 
 import com.example.loginwithjavafxmaven.Main;
+import com.example.loginwithjavafxmaven.controller.UsuarioController;
 import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.view.LoginView;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import java.util.List;
 public class RepositoryLogin {
 
     RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
+    UsuarioController usuarioController = new UsuarioController();
 
     @javafx.fxml.FXML
     public void menuIniciarSesion(ActionEvent actionEvent) {
@@ -46,7 +48,7 @@ public class RepositoryLogin {
         List<Usuario> usuarios = repositoryUsuarios.getUsuarios(); //Usuarios de la base de datos
 
         //Primero comprobamos si existe el correo electronico dentro de la base de datos
-        Usuario usu = repositoryUsuarios.buscarUsuario(usuarios,email);
+        Usuario usu = usuarioController.buscarUsuario(usuarios,email);
         if (usu == null){ //Controlamos la excepcion, ya que a la hora de iniciar sesion si introducimos un usuario invalido el usuario sera null
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

@@ -43,6 +43,7 @@ public class LoginView {
 
         if ((!mail.isBlank())||(!password.isBlank())){
             sesion = loginController.iniciarSesion(mail,password); //Lanzamos el inicio de sesion
+
             if (sesion){
                 loginSuccessfulController.menuLoginSuccessful(actionEvent);
             }
