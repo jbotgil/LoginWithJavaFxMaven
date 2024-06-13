@@ -45,9 +45,7 @@ public class RepositoryUsuarios {
             return null;
         }
 
-        Usuario usuarioEncontrado;
-
-         return usuarioEncontrado = usuarios.stream()
+         return usuarios.stream()
                 .filter(usuario -> usuario != null && mail.equals(usuario.getEmail()))
                 .findFirst()
                 .orElse(null);
