@@ -3,6 +3,7 @@ package com.example.loginwithjavafxmaven.repositories;
 import com.example.loginwithjavafxmaven.Main;
 import com.example.loginwithjavafxmaven.controller.NameCheckerController;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
+import com.example.loginwithjavafxmaven.view.AlertasView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 
 public class RepositoryRegister {
     private SQLiteConnector connector = SQLiteConnector.getInstance();
+    AlertasView alertasView = new AlertasView();
 
     //Controlar si el correo existe
     private static boolean correoExiste = false;
@@ -105,46 +107,36 @@ public class RepositoryRegister {
 
             // Validar nombre (no altero tu lógica de validación aquí)
             if (!nameCheckerController.validarNombre(nombreCompleto)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Nombre invalido.");
-                alert.showAndWait();
+                alertasView.mostrarAlerta("Error","Nombre invalido.", Alert.AlertType.ERROR);
                 return;
             }
 
             // Validar correo existente
             if (repositoryUsuarios.buscarUsuario(email) != null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Correo electronico existente.");
-                alert.showAndWait();
+                alertasView.mostrarAlerta("Error","Correo electronico existente.", Alert.AlertType.ERROR);
                 return;
             }
 
+
             // Insertar usuario si todo está validado
-            pstmt.setString(1, nombreCompleto);
-            pstmt.setString(2, email);
-            pstmt.setString(3, passwd);
+            pstmt.setString(2, nombreCompleto);
+            pstmt.setString(3, email);
+            pstmt.setString(4, passwd);
 
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
 
-            int rowsAffected = pstmt.executeUpdate();
+
+            /*int rowsAffected =
 
             if (rowsAffected > 0) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText(null);
                 alert.setContentText("Usuario registrado correctamente!");
                 alert.showAndWait();
-            }
+            }*/
 
         } catch (SQLException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Error al registrar usuario: " + e.getMessage());
-            alert.showAndWait();
+            alertasView.mostrarAlerta("Error","Error al registrar usuario", Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }
