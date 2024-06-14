@@ -20,7 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RepositoryRegister {
-    SQLiteConnector connector;
+
     AlertasView alertasView = new AlertasView();
     RepositoryMailValidator repositoryMailValidator = new RepositoryMailValidator();
     NameCheckerController nameCheckerController = new NameCheckerController();
@@ -34,6 +34,7 @@ public class RepositoryRegister {
     private static boolean nombreValido = false;
     private double guardarAltura;
     private double guardarAncho;
+    int siguienteId;
 
     public static boolean isCorreoExiste() {
         return correoExiste;
@@ -101,7 +102,9 @@ public class RepositoryRegister {
 
     public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto) {
 
-        String sql = "INSERT INTO Usuarios(nombreCompleto, email, passwd) VALUES (?, ?, ?)";
+        SQLiteConnector connector = SQLiteConnector.getInstance();
+
+        String sql = "INSERT INTO Usuarios(id, nombreCompleto, email, passwd) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = connector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -126,10 +129,13 @@ public class RepositoryRegister {
                 return;
             }
 
+            siguienteId = repositoryUsuarios.getUsuarios().size() + 1;
+
             // Insertar usuario si todo está validado
-            pstmt.setString(1, nombreCompleto);
-            pstmt.setString(2, email);
-            pstmt.setString(3, passwd);
+            pstmt.setInt(1, siguienteId);
+            pstmt.setString(2, nombreCompleto);
+            pstmt.setString(3, email);
+            pstmt.setString(4, passwd);
 
             int rowsAffected = pstmt.executeUpdate();
 
@@ -142,7 +148,7 @@ public class RepositoryRegister {
 
         } catch (SQLException e) {
             alertasView.mostrarAlerta("Error", "Error al registrar usuario", Alert.AlertType.ERROR);
-            e.printStackTrace(); // Considera loggear la excepción en lugar de imprimir en consola
+            e.printStackTrace();
         }
     }
 }

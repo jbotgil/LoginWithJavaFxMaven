@@ -30,8 +30,16 @@ public class SQLiteConnector {
         }
     }
     public Connection getConnection() {
+        try {
+            if(conn.isClosed())
+                connect();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return conn;
     }
+
+
     public static void main(String[] args) {
 
         SQLiteConnector sqLiteConnector = SQLiteConnector.getInstance();
