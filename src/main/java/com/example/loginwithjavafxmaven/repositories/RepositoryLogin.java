@@ -22,30 +22,6 @@ public class RepositoryLogin {
     UsuarioController usuarioController = new UsuarioController();
 
 
-    @javafx.fxml.FXML
-    public void menuIniciarSesion(ActionEvent actionEvent) {
-        try {
-            //creamos un objeto loader y cogemos sus controlles (configuraciones)
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
-            Parent root = loader.load();
-            LoginView loginView = loader.getController();
-
-            Stage stage = (Stage) ((Hyperlink) actionEvent.getSource()).getScene().getWindow();
-
-            //Le asignamos la altura y el ancho a la escena
-            stage.setWidth(loginView.getGuardarAltura());
-            stage.setHeight(loginView.getGuardarAncho());
-
-            stage.setTitle("Login");
-
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-
     public boolean iniciarSesion(String email, String passwd){
         List<Usuario> usuarios = repositoryUsuarios.getUsuarios();
 

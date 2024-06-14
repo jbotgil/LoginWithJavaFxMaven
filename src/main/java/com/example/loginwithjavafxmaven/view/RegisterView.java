@@ -1,11 +1,18 @@
 package com.example.loginwithjavafxmaven.view;
 
+import com.example.loginwithjavafxmaven.Main;
 import com.example.loginwithjavafxmaven.controller.LoginController;
 import com.example.loginwithjavafxmaven.controller.RegisterController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class RegisterView {
     @javafx.fxml.FXML
@@ -15,11 +22,7 @@ public class RegisterView {
     @javafx.fxml.FXML
     private PasswordField passwordField;
     @javafx.fxml.FXML
-    private Hyperlink iniciarSesion;
-    @javafx.fxml.FXML
     private TextField nombreField;
-
-    LoginController loginController = new LoginController();
     RegisterController registerController = new RegisterController();
 
     @javafx.fxml.FXML
@@ -34,6 +37,24 @@ public class RegisterView {
 
     @javafx.fxml.FXML
     public void menuIniciarSesion(ActionEvent actionEvent) {
-        loginController.menuLogin(actionEvent);
+        try {
+            //creamos un objeto loader y cogemos sus controlles (configuraciones)
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
+            Parent root = loader.load();
+            LoginView loginView = loader.getController();
+
+            Stage stage = (Stage) ((Hyperlink) actionEvent.getSource()).getScene().getWindow();
+
+            //Le asignamos la altura y el ancho a la escena
+            stage.setWidth(loginView.getGuardarAltura());
+            stage.setHeight(loginView.getGuardarAncho());
+
+            stage.setTitle("Login");
+
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -11,8 +11,8 @@ public class RegisterController {
         modelRegister.registrarse(actionEvent,email,passwd,passwdVerificar,nombreCompleto);
     }
 
-    public void menuCrearCuenta(ActionEvent actionEvent) {
+    /*public void menuCrearCuenta(ActionEvent actionEvent) {
         modelRegister.menuCrearCuenta(actionEvent);
-    }
+    }*/
 
 }

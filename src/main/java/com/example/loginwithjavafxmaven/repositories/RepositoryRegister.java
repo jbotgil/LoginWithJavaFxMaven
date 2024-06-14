@@ -77,7 +77,7 @@ public class RepositoryRegister {
     }
 
 
-    @javafx.fxml.FXML
+    /*@javafx.fxml.FXML
     public void menuCrearCuenta(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("RegisterView.fxml"));
@@ -98,7 +98,7 @@ public class RepositoryRegister {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto) {
         SQLiteConnector connector = SQLiteConnector.getInstance();
