@@ -3,6 +3,7 @@ package com.example.loginwithjavafxmaven.repositories;
 import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,6 +31,12 @@ public class RepositoryUsuarios {
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
+
+    /*public List<Usuario> cargarUsuarios(){
+        usuarios = new ArrayList<>();
+
+
+    }*/
 
     /**
      * Metodo para buscar usuarios a traves del mail en una base de datos
