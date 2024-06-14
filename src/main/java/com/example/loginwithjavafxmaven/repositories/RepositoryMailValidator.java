@@ -69,7 +69,7 @@ public class RepositoryMailValidator {
         }
         return res;
     }
-    public static boolean isAddressValid( String address ) {
+    private static boolean isAddressValid( String address ) {
         // Find the separator for the domain name
         int pos = address.indexOf( '@' );
         // If the address does not contain an '@', it's not valid
@@ -131,7 +131,7 @@ public class RepositoryMailValidator {
         return false;
     }
 
-    public String call_this_to_validate( String email ) {
+    private String call_this_to_validate( String email ) {
         String testData[] = {email};
         String return_string="";
         for ( int ctr = 0 ; ctr < testData.length ; ctr++ ) {
@@ -145,30 +145,10 @@ public class RepositoryMailValidator {
     /**
      * Llamaremos a este codigo para validar los mails
      *
-     * @author jbotgil
      * @return true en caso de que el mail sea válido, o false en caso contrario
      */
-
-
     public boolean validarMail(String correo){
-        if (RepositoryMailValidator.isAddressValid(correo)) {
-            //Correo electrónico válido
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Correo válido");
-            alert.setHeaderText(null);
-            alert.setContentText("El correo electrónico es válido.");
-            alert.showAndWait();
-
-            return true;
-        } else {
-            //Correo electrónico inválido
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Correo inválido");
-            alert.setHeaderText(null);
-            alert.setContentText("El correo electrónico no es válido.");
-            alert.showAndWait();
-            return false;
-        }
+        return RepositoryMailValidator.isAddressValid(correo);
     }
 
 }

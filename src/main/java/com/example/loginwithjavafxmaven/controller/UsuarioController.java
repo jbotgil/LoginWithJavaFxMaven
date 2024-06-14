@@ -5,12 +5,13 @@ import com.example.loginwithjavafxmaven.model.ModelUsuario;
 
 import java.util.List;
 
+
 public class UsuarioController {
 
     ModelUsuario modelUsuario = new ModelUsuario();
 
-    public Usuario buscarUsuario(String mail) {
-        return modelUsuario.buscarUsuario(mail);
+    public Usuario buscarUsuario(List<Usuario> usuarios,String mail) {
+        return modelUsuario.buscarUsuario(usuarios,mail);
     }
 
 }

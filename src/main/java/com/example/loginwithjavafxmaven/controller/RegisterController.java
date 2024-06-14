@@ -10,18 +10,6 @@ import javafx.scene.control.TextField;
 
 public class RegisterController {
 
-    @javafx.fxml.FXML
-    private Hyperlink iniciarSesion;
-    @javafx.fxml.FXML
-    private TextField mailField;
-    @javafx.fxml.FXML
-    private PasswordField repitPasswordField;
-    @javafx.fxml.FXML
-    private PasswordField passwordField;
-    @javafx.fxml.FXML
-    private TextField nombreField;
-
-
     ModelRegister modelRegister = new ModelRegister();
 
     public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto){

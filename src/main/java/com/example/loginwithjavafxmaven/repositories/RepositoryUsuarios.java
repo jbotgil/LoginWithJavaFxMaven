@@ -3,6 +3,7 @@ package com.example.loginwithjavafxmaven.repositories;
 import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class RepositoryUsuarios {
@@ -37,17 +38,20 @@ public class RepositoryUsuarios {
      *
      * @return En el caso de que el usuario exista, devolverá el objeto Usuario, en caso constrario devolverá null
      */
-    public Usuario buscarUsuario(String mail) {
-        List<Usuario> usuarios = getUsuarios();
+    public Usuario buscarUsuario(List<Usuario> usuarios, String mail) {
+        usuarios = getUsuarios();
 
         if (usuarios == null) {
             System.out.println("La lista de usuarios es nula");
             return null;
         }
 
-         return usuarios.stream()
-                .filter(usuario -> usuario != null && mail.equals(usuario.getEmail()))
-                .findFirst()
-                .orElse(null);
+        for (Usuario usuario : usuarios) {
+            if (usuario != null && mail.equals(usuario.getEmail())) {
+                return usuario;
+            }
+        }
+        return null;
     }
+
 }

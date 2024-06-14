@@ -8,15 +8,7 @@ import java.util.regex.Pattern;
 public class NameCheckerController {
 
     //En esta variable guardaremos el nombre en caso de que sea valido
-    private String nombreValido;
 
-    public String getNombreValido() {
-        return nombreValido;
-    }
-
-    public void setNombreValido(String nombreValido) {
-        this.nombreValido = nombreValido;
-    }
 
 
     // Definimos la expresión regular para comprobar el formato del nombre y apellidos
@@ -34,20 +26,7 @@ public class NameCheckerController {
      * @param nombre el nombre que queramos validar
      * @return devuelve un boleano para verificar si el nombre es valido o no
       */
-
-
     public boolean validarNombre(String nombre){
-        boolean esValido = false;
-        if (esNombreValido(nombre)){ //Si el nombre es valido ...
-            esValido = true;
-            setNombreValido(nombre);
-        } else {
-            Alert nombreInvalido = new Alert(Alert.AlertType.ERROR);
-            nombreInvalido.setTitle("Correo inválido");
-            nombreInvalido.setHeaderText(null);
-            nombreInvalido.setContentText("El nombre no es válido.");
-            nombreInvalido.showAndWait();
-        }
-        return esValido; //En caso de no entrar al if es que el nombre no es valido
+        return esNombreValido(nombre);
     }
 }

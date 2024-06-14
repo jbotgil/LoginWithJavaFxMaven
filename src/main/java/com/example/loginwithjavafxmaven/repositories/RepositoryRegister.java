@@ -2,6 +2,7 @@ package com.example.loginwithjavafxmaven.repositories;
 
 import com.example.loginwithjavafxmaven.Main;
 import com.example.loginwithjavafxmaven.controller.NameCheckerController;
+import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 import com.example.loginwithjavafxmaven.view.AlertasView;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RepositoryRegister {
 
@@ -101,30 +103,29 @@ public class RepositoryRegister {
     }
 
     public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto) {
-
         SQLiteConnector connector = SQLiteConnector.getInstance();
+
+        List<Usuario> usuarios = repositoryUsuarios.getUsuarios();
 
         String sql = "INSERT INTO Usuarios(id, nombreCompleto, email, passwd) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = connector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-
-            // Validar nombre (no altero tu lógica de validación aquí)
+            // Validar nombre
             if (!nameCheckerController.validarNombre(nombreCompleto)) {
-                alertasView.mostrarAlerta("Error", "Nombre inválido.", Alert.AlertType.ERROR);
+                alertasView.mostrarAlerta("Error", "Nombre inválido.", Alert.AlertType.WARNING);
                 return;
             }
 
             // Validar correo valido
             if (!repositoryMailValidator.validarMail(email)){
-                //Si el mail no existe
-                alertasView.mostrarAlerta("Error","Correo inválido", Alert.AlertType.ERROR);
+                alertasView.mostrarAlerta("Error","Correo inválido", Alert.AlertType.WARNING);
                 return;
             }
 
-            // Validar correo existente dentro de la base de datos
-            if (repositoryUsuarios.buscarUsuario(email) != null) {
+            // Validar correo es valido dentro de la base de datos
+            if (repositoryUsuarios.buscarUsuario(usuarios,email) != null) {
                 alertasView.mostrarAlerta("Error", "Correo electrónico existente.", Alert.AlertType.ERROR);
                 return;
             }
@@ -132,23 +133,27 @@ public class RepositoryRegister {
             siguienteId = repositoryUsuarios.getUsuarios().size() + 1;
 
             // Insertar usuario si todo está validado
-            pstmt.setInt(1, siguienteId);
-            pstmt.setString(2, nombreCompleto);
-            pstmt.setString(3, email);
-            pstmt.setString(4, passwd);
+            if (passwd.equals(passwdVerificar) && !passwd.isBlank()){
+                pstmt.setInt(1, siguienteId);
+                pstmt.setString(2, nombreCompleto);
+                pstmt.setString(3, email);
+                pstmt.setString(4, passwd);
 
-            int rowsAffected = pstmt.executeUpdate();
+                int rowsAffected = pstmt.executeUpdate();
 
-            if (rowsAffected > 0) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Usuario registrado correctamente!");
-                alert.showAndWait();
+                if (rowsAffected > 0) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Usuario registrado correctamente!");
+                    alert.showAndWait();
+                }
+            } else {
+                alertasView.mostrarAlerta("Error", "Las contraseñas no coinciden o están en blanco.", Alert.AlertType.WARNING);
             }
-
         } catch (SQLException e) {
             alertasView.mostrarAlerta("Error", "Error al registrar usuario", Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }
+
 }
