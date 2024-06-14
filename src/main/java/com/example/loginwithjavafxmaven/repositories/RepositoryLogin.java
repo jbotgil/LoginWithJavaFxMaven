@@ -1,19 +1,9 @@
 package com.example.loginwithjavafxmaven.repositories;
 
-import com.example.loginwithjavafxmaven.Main;
 import com.example.loginwithjavafxmaven.controller.UsuarioController;
 import com.example.loginwithjavafxmaven.dao.Usuario;
-import com.example.loginwithjavafxmaven.util.SQLiteConnector;
-import com.example.loginwithjavafxmaven.view.LoginView;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Hyperlink;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.List;
 
 public class RepositoryLogin {

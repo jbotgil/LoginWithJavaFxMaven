@@ -4,15 +4,9 @@ import com.example.loginwithjavafxmaven.model.ModelRegister;
 import javafx.event.ActionEvent;
 
 public class RegisterController {
-
     ModelRegister modelRegister = new ModelRegister();
 
     public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto){
         modelRegister.registrarse(actionEvent,email,passwd,passwdVerificar,nombreCompleto);
     }
-
-    /*public void menuCrearCuenta(ActionEvent actionEvent) {
-        modelRegister.menuCrearCuenta(actionEvent);
-    }*/
-
 }

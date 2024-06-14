@@ -1,7 +1,6 @@
 package com.example.loginwithjavafxmaven.view;
 
 import com.example.loginwithjavafxmaven.Main;
-import com.example.loginwithjavafxmaven.controller.LoginController;
 import com.example.loginwithjavafxmaven.controller.RegisterController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

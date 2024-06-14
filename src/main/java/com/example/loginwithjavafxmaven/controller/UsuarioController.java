@@ -5,7 +5,6 @@ import com.example.loginwithjavafxmaven.model.ModelUsuario;
 
 import java.util.List;
 
-
 public class UsuarioController {
 
     ModelUsuario modelUsuario = new ModelUsuario();

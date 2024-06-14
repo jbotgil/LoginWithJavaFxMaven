@@ -6,7 +6,6 @@ import com.example.loginwithjavafxmaven.repositories.RepositoryUsuarios;
 import java.util.List;
 
 public class ModelUsuario {
-
     RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
 
     public Usuario buscarUsuario(List<Usuario> usuarios,String mail) {

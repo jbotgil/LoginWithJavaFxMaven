@@ -5,10 +5,6 @@ import java.util.regex.Pattern;
 
 public class NameCheckerController {
 
-    //En esta variable guardaremos el nombre en caso de que sea valido
-
-
-
     // Definimos la expresión regular para comprobar el formato del nombre y apellidos
     private static final String NOMBRE_APELLIDOS_REGEX = "^([A-Za-zÀ-ÿ]+\\s+){1,3}[A-Za-zÀ-ÿ]+$"; //1 nombre minimo 2 maximo, 1 apellido minimo 2 maximo
     private static boolean esNombreValido(String nombre) {

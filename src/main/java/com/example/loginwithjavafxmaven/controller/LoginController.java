@@ -1,7 +1,6 @@
 package com.example.loginwithjavafxmaven.controller;
 
 import com.example.loginwithjavafxmaven.model.ModelLogin;
-import javafx.event.ActionEvent;
 
 public class LoginController {
     ModelLogin modelLogin = new ModelLogin();
