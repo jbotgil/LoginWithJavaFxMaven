@@ -14,15 +14,10 @@ import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 public class RepositoryLogin {
 
-
-    SQLiteConnector connector = SQLiteConnector.getInstance();
     RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
     UsuarioController usuarioController = new UsuarioController();
 

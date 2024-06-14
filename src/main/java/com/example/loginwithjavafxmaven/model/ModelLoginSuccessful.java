@@ -1,13 +1,13 @@
 package com.example.loginwithjavafxmaven.model;
 
-import com.example.loginwithjavafxmaven.repositories.ReporitoryLoginSuccessful;
+import com.example.loginwithjavafxmaven.view.LoginSuccessfulView;
 import javafx.event.ActionEvent;
 
 public class ModelLoginSuccessful {
-    ReporitoryLoginSuccessful reporitoryLoginSuccessful = new ReporitoryLoginSuccessful();
+    LoginSuccessfulView loginSuccessfulView = new LoginSuccessfulView();
 
     public void menuLoginSuccessful(ActionEvent actionEvent){
-        reporitoryLoginSuccessful.menuLoginSuccess(actionEvent);
+        loginSuccessfulView.menuLoginSuccess(actionEvent);
     }
 
 }

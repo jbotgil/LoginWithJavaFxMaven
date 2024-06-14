@@ -2,7 +2,6 @@ package com.example.loginwithjavafxmaven.view;
 
 import com.example.loginwithjavafxmaven.controller.LoginController;
 import com.example.loginwithjavafxmaven.controller.RegisterController;
-import com.example.loginwithjavafxmaven.model.ModelLogin;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;

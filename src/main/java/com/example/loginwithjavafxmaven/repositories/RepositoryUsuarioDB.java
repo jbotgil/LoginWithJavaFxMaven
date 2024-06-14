@@ -4,7 +4,6 @@ import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 

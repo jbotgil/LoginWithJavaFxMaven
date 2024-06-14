@@ -1,14 +1,11 @@
 package com.example.loginwithjavafxmaven.repositories;
 
-import javafx.scene.control.Alert;
-
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;

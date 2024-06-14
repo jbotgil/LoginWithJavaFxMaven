@@ -3,8 +3,11 @@ package com.example.loginwithjavafxmaven.repositories;
 import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class RepositoryUsuarios {
@@ -29,14 +32,29 @@ public class RepositoryUsuarios {
 
     //Método para obtener la lista de usuarios
     public List<Usuario> getUsuarios() {
-        return usuarios;
+        return cargarUsuarios();
     }
 
-    /*public List<Usuario> cargarUsuarios(){
+    public List<Usuario> cargarUsuarios(){
         usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM Usuarios";
+        try (Connection conn = connector.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombreCompleto");
+                String mail = rs.getString("email");
+                String passwd = rs.getString("passwd");
 
-
-    }*/
+                Usuario usuario = new Usuario(id,nombre,passwd,mail);
+                usuarios.add(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
+    }
 
     /**
      * Metodo para buscar usuarios a traves del mail en una base de datos
@@ -46,7 +64,6 @@ public class RepositoryUsuarios {
      * @return En el caso de que el usuario exista, devolverá el objeto Usuario, en caso constrario devolverá null
      */
     public Usuario buscarUsuario(List<Usuario> usuarios, String mail) {
-        usuarios = getUsuarios();
 
         if (usuarios == null) {
             System.out.println("La lista de usuarios es nula");

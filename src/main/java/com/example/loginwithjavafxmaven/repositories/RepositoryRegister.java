@@ -6,13 +6,11 @@ import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 import com.example.loginwithjavafxmaven.view.AlertasView;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -104,7 +102,7 @@ public class RepositoryRegister {
 
     public void registrarse(ActionEvent actionEvent, String email, String passwd, String passwdVerificar, String nombreCompleto) {
         SQLiteConnector connector = SQLiteConnector.getInstance();
-
+        RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
         List<Usuario> usuarios = repositoryUsuarios.getUsuarios();
 
         String sql = "INSERT INTO Usuarios(id, nombreCompleto, email, passwd) VALUES (?, ?, ?, ?)";
@@ -112,35 +110,33 @@ public class RepositoryRegister {
         try (Connection conn = connector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            // Validar nombre
+            // Validate name
             if (!nameCheckerController.validarNombre(nombreCompleto)) {
                 alertasView.mostrarAlerta("Error", "Nombre inválido.", Alert.AlertType.WARNING);
                 return;
             }
 
-            // Validar correo valido
-            if (!repositoryMailValidator.validarMail(email)){
-                alertasView.mostrarAlerta("Error","Correo inválido", Alert.AlertType.WARNING);
+            // Validate email
+            if (!repositoryMailValidator.validarMail(email)) {
+                alertasView.mostrarAlerta("Error", "Correo inválido", Alert.AlertType.WARNING);
                 return;
             }
 
-            // Validar correo es valido dentro de la base de datos
-            if (repositoryUsuarios.buscarUsuario(usuarios,email) != null) {
+            // Check if email exists
+            if (repositoryUsuarios.buscarUsuario(usuarios, email) != null) {
                 alertasView.mostrarAlerta("Error", "Correo electrónico existente.", Alert.AlertType.ERROR);
                 return;
             }
 
-            siguienteId = repositoryUsuarios.getUsuarios().size() + 1;
+            int siguienteId = usuarios.size() + 1;
 
-            // Insertar usuario si todo está validado
-            if (passwd.equals(passwdVerificar) && !passwd.isBlank()){
-                pstmt.setInt(1, siguienteId);
-                pstmt.setString(2, nombreCompleto);
-                pstmt.setString(3, email);
-                pstmt.setString(4, passwd);
+            pstmt.setInt(1, siguienteId);
+            pstmt.setString(2, nombreCompleto);
+            pstmt.setString(3, email);
+            pstmt.setString(4, passwd);
 
+            if (passwd.equals(passwdVerificar) && !passwd.isBlank()) {
                 int rowsAffected = pstmt.executeUpdate();
-
                 if (rowsAffected > 0) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setHeaderText(null);
@@ -155,5 +151,4 @@ public class RepositoryRegister {
             e.printStackTrace();
         }
     }
-
 }

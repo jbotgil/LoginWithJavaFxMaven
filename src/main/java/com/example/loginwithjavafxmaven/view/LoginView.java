@@ -3,8 +3,6 @@ package com.example.loginwithjavafxmaven.view;
 import com.example.loginwithjavafxmaven.controller.LoginController;
 import com.example.loginwithjavafxmaven.controller.LoginSuccessfulController;
 import com.example.loginwithjavafxmaven.controller.RegisterController;
-import com.example.loginwithjavafxmaven.model.ModelRegister;
-import com.example.loginwithjavafxmaven.repositories.RepositoryLogin;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;

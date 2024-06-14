@@ -1,12 +1,7 @@
 package com.example.loginwithjavafxmaven.controller;
 
 import com.example.loginwithjavafxmaven.model.ModelRegister;
-import com.example.loginwithjavafxmaven.repositories.RepositoryMailValidator;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
 public class RegisterController {
 
