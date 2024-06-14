@@ -34,7 +34,7 @@ public class RegisterView {
         registerController.registrarse(actionEvent,mail,passwd,passwdVerificar,nombreCompleto);
     }
 
-    @javafx.fxml.FXML
+    /*@javafx.fxml.FXML
     public void menuIniciarSesion(ActionEvent actionEvent) {
         try {
             //creamos un objeto loader y cogemos sus controlles (configuraciones)
@@ -54,6 +54,33 @@ public class RegisterView {
             stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }*/
+
+    @javafx.fxml.FXML
+    public void menuIniciarSesion(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
+            Parent root = loader.load();
+            LoginView loginView = loader.getController();
+
+            Stage stage;
+            if (actionEvent.getSource() instanceof Stage) {
+                stage = (Stage) actionEvent.getSource();
+            } else {
+                // Correctly handle various types of nodes
+                stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            }
+
+            //Le asignamos la altura y el ancho a la escena
+            stage.setWidth(loginView.getGuardarAltura());
+            stage.setHeight(loginView.getGuardarAncho());
+
+            stage.setTitle("Login");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

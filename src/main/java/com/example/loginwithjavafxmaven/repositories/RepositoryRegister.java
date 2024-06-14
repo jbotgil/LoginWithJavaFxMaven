@@ -1,9 +1,11 @@
 package com.example.loginwithjavafxmaven.repositories;
 
 import com.example.loginwithjavafxmaven.controller.NameCheckerController;
+import com.example.loginwithjavafxmaven.controller.RegisterController;
 import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 import com.example.loginwithjavafxmaven.view.AlertasView;
+import com.example.loginwithjavafxmaven.view.RegisterView;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 
@@ -97,14 +99,17 @@ public class RepositoryRegister {
                 return;
             }
 
-            int siguienteId = usuarios.size() + 1;
 
-            pstmt.setInt(1, siguienteId);
-            pstmt.setString(2, nombreCompleto);
-            pstmt.setString(3, email);
-            pstmt.setString(4, passwd);
 
             if (passwd.equals(passwdVerificar) && !passwd.isBlank()) {
+
+                int siguienteId = usuarios.size() + 1;
+
+                pstmt.setInt(1, siguienteId);
+                pstmt.setString(2, nombreCompleto);
+                pstmt.setString(3, email);
+                pstmt.setString(4, passwd);
+
                 int rowsAffected = pstmt.executeUpdate();
                 if (rowsAffected > 0) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -112,6 +117,10 @@ public class RepositoryRegister {
                     alert.setContentText("Usuario registrado correctamente!");
                     alert.showAndWait();
                 }
+
+                RegisterView registerView = new RegisterView();
+                registerView.menuIniciarSesion(actionEvent);
+
             } else {
                 alertasView.mostrarAlerta("Error", "Las contraseñas no coinciden o están en blanco.", Alert.AlertType.WARNING);
             }
