@@ -3,7 +3,6 @@ package com.example.loginwithjavafxmaven.view;
 import com.example.loginwithjavafxmaven.Main;
 import com.example.loginwithjavafxmaven.controller.LoginController;
 import com.example.loginwithjavafxmaven.controller.LoginSuccessfulController;
-import com.example.loginwithjavafxmaven.controller.RegisterController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,10 +20,9 @@ public class LoginView {
     private TextField mailField;
     @javafx.fxml.FXML
     private PasswordField passwordField;
-    RegisterController registerController = new RegisterController();
     LoginController loginController = new LoginController();
-
     LoginSuccessfulController loginSuccessfulController = new LoginSuccessfulController();
+    AlertasView alertasView = new AlertasView();
 
     private double guardarAltura;
     private double guardarAncho;
@@ -52,10 +50,7 @@ public class LoginView {
                 loginSuccessfulController.menuLoginSuccessful(actionEvent);
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error de inicio de sesion");
-            alert.showAndWait();
+            alertasView.mostrarAlerta("Error","Error de inicio de sesión", Alert.AlertType.WARNING);
         }
 
     }

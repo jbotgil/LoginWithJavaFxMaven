@@ -2,6 +2,7 @@ package com.example.loginwithjavafxmaven.repositories;
 
 import com.example.loginwithjavafxmaven.controller.UsuarioController;
 import com.example.loginwithjavafxmaven.dao.Usuario;
+import com.example.loginwithjavafxmaven.view.AlertasView;
 import javafx.scene.control.Alert;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public class RepositoryLogin {
 
     RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
     UsuarioController usuarioController = new UsuarioController();
+    AlertasView alertasView = new AlertasView();
 
 
     public boolean iniciarSesion(String email, String passwd){
@@ -20,10 +22,7 @@ public class RepositoryLogin {
 
 
         if (usu == null){ //Controlamos la excepcion, ya que a la hora de iniciar sesion si introducimos un usuario invalido el usuario sera null
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error de inicio de sesion");
-            alert.showAndWait();
+            alertasView.mostrarAlerta("Error","Error de inicio de sesion", Alert.AlertType.ERROR);
         }
 
         if ((email.equals(usu.getEmail()))&& passwd.equals(usu.getPasswd())){

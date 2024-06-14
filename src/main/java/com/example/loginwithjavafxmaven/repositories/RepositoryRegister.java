@@ -1,7 +1,6 @@
 package com.example.loginwithjavafxmaven.repositories;
 
 import com.example.loginwithjavafxmaven.controller.NameCheckerController;
-import com.example.loginwithjavafxmaven.controller.RegisterController;
 import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 import com.example.loginwithjavafxmaven.view.AlertasView;
