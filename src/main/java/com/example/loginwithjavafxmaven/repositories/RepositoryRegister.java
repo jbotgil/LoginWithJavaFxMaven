@@ -4,6 +4,7 @@ import com.example.loginwithjavafxmaven.controller.NameCheckerController;
 import com.example.loginwithjavafxmaven.dao.Usuario;
 import com.example.loginwithjavafxmaven.util.SQLiteConnector;
 import com.example.loginwithjavafxmaven.view.AlertasView;
+import com.example.loginwithjavafxmaven.view.LoginView;
 import com.example.loginwithjavafxmaven.view.RegisterView;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -19,6 +20,7 @@ public class RepositoryRegister {
     RepositoryMailValidator repositoryMailValidator = new RepositoryMailValidator();
     NameCheckerController nameCheckerController = new NameCheckerController();
     RepositoryUsuarios repositoryUsuarios = RepositoryUsuarios.getInstance();
+    LoginView loginView = new LoginView();
 
     //Controlar si el correo existe
     private static boolean correoExiste = false;
