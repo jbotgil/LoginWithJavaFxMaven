@@ -11,7 +11,13 @@ LoginWithJava es una aplicación de inicio de sesión desarrollada en Java utili
 ## Features
 
 - **Inicio de sesión:** Los usuarios pueden iniciar sesión utilizando credenciales válidas almacenadas en una base de datos local.
+    <p align="center">
+        <img src="readmeImages/loginImg.png">
+    </p>
 - **Registro:** Registro de usuarios utilizando base de datos SQLite.
+    <p align="center">
+        <img src="readmeImages/registerImg.png">
+    </p>
 - **Interfaz de usuario amigable:** Diseño intuitivo y fácil de usar desarrollado con JavaFX.
 - **Validación de datos:** Se implementa una validación robusta para garantizar la integridad de los datos ingresados.
 
