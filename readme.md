@@ -51,7 +51,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto:
     <img src="readmeImages/addNewApplication.png">
 
 
-7. **Cambiaremos el nombre de la aplicación (preferiblementa a Main), verificaremos la ruta y la versión del SDK, después añadiremos nuestra clase Main en el apartado de |"Main Class"|.**
+7. **Cambiaremos el nombre de la aplicación (preferiblementa a Main), verificaremos la ruta y la versión del SDK (en caso de que el 20 no funcione instalaremos el 21), después añadiremos nuestra clase Main en el apartado de |"Main Class"|.**
     <img src="readmeImages/main.png">
 
 
